@@ -8,7 +8,7 @@ import { MatListModule } from "@angular/material/list";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
-import {AppRoutingModule} from "./app-routing/app-routing.module";
+import { AppRoutingModule } from "./app-routing/app-routing.module";
 
 import "hammerjs";
 
@@ -22,7 +22,8 @@ import { AboutComponent } from "./about/about.component";
 import { ContactComponent } from "./contact/contact.component";
 
 import { DishService } from "./services/dish.service";
-import {PromotionService} from "./services/promotion.service";
+import { PromotionService } from "./services/promotion.service";
+import { LeaderService } from "./services/leader.service";
 
 @NgModule({
   declarations: [
@@ -31,13 +32,12 @@ import {PromotionService} from "./services/promotion.service";
     DishdetailComponent,
     HeaderComponent,
     FooterComponent,
-
     HomeComponent,
     AboutComponent,
     ContactComponent,
   ],
 
-  providers: [DishService,PromotionService],
+  providers: [DishService, PromotionService, LeaderService],
   bootstrap: [AppComponent],
 
   imports: [
@@ -49,7 +49,7 @@ import {PromotionService} from "./services/promotion.service";
     MatGridListModule,
     MatCardModule,
     MatButtonModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
 })
 export class AppModule {}
