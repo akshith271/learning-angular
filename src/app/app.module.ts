@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatToolbarModule } from "@angular/material/toolbar";
+import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatListModule } from "@angular/material/list";
 import { MatGridListModule } from "@angular/material/grid-list";
@@ -24,6 +25,7 @@ import { ContactComponent } from "./contact/contact.component";
 import { DishService } from "./services/dish.service";
 import { PromotionService } from "./services/promotion.service";
 import { LeaderService } from "./services/leader.service";
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { LeaderService } from "./services/leader.service";
     HomeComponent,
     AboutComponent,
     ContactComponent,
+    LoginComponent,
   ],
 
   providers: [DishService, PromotionService, LeaderService],
@@ -48,8 +51,12 @@ import { LeaderService } from "./services/leader.service";
     MatListModule,
     MatGridListModule,
     MatCardModule,
+    MatDialogModule,
     MatButtonModule,
     AppRoutingModule,
+  ],
+  entryComponents:[
+    LoginComponent
   ],
 })
 export class AppModule {}
