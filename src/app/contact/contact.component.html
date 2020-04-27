@@ -40,7 +40,7 @@
     <h3>Send us your Feedback</h3>
     <p>{{ feedbackForm.value | json }} {{ feedbackForm.status | json }}</p>
 
-    <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+    <form novalidate [formGroup]="feedbackForm" #ffrom="ngForm" (ngSubmit)="onSubmit()">
       <p>
         <mat-form-field class="half-width">
           <input
@@ -49,6 +49,14 @@
             placeholder="First Name"
             type="text"
           />
+          <mat-error
+            *ngIf="
+              feedbackForm.get('firstname').hasError('required') &&
+              feedbackForm.get('firstname').touched
+            "
+          >
+            First Name is required
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="half-width">
           <input
@@ -57,6 +65,14 @@
             placeholder="Last Name"
             type="text"
           />
+          <mat-error
+            *ngIf="
+              feedbackForm.get('lastname').hasError('required') &&
+              feedbackForm.get('lastname').touched
+            "
+          >
+            Last Name is required
+          </mat-error>
         </mat-form-field>
       </p>
       <p>
@@ -67,6 +83,14 @@
             placeholder="Tel. Number"
             type="tel"
           />
+          <mat-error
+            *ngIf="
+              feedbackForm.get('telnum').hasError('required') &&
+              feedbackForm.get('telnum').touched
+            "
+          >
+            Tel. Number is required
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="half-width">
           <input
@@ -75,6 +99,14 @@
             placeholder="Email"
             type="email"
           />
+          <mat-error
+            *ngIf="
+              feedbackForm.get('email').hasError('required') &&
+              feedbackForm.get('email').touched
+            "
+          >
+            Email is required
+          </mat-error>
         </mat-form-field>
       </p>
       <table class="form-size">
@@ -105,6 +137,7 @@
         type="submit"
         mat-button
         class="background-primary text-floral-white"
+        [disabled]="feedbackForm.invalid"
       >
         Submit
       </button>
