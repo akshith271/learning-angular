@@ -1,21 +1,32 @@
 import {Injectable} from "@angular/core";
 import {Leader} from "../shared/leader";
 import {LEADERS} from "../shared/leaders";
+import {timeout} from "rxjs/operators";
+import {DISHES} from "../shared/dishes";
 
 @Injectable({
   providedIn: "root",
 })
 export class LeaderService {
   constructor() {}
-  getLeaders(): Leader[] {
-    return LEADERS;
+  getLeaders(): Promise<Leader[]> {
+    return  new Promise(resolve => {
+      setTimeout(()=> resolve (LEADERS), timeout(2000));
+    });
   }
 
-  getLeader(id: string): Leader {
-    return LEADERS.find((leader) => leader.id === id);
+
+  getLeader(id: string): Promise<Leader> {
+    return new Promise(resolve=> {
+      // Simulate server latency with 2 second delay
+      setTimeout(() => resolve(LEADERS.filter((leader) => (leader.id === id))[0]), 2000);
+    });
   }
 
-  getFeaturedLeader(): Leader {
-    return LEADERS.find((leader) => leader.featured);
+  getFeaturedLeader(): Promise<Leader> {
+    return new Promise(resolve=> {
+      // Simulate server latency with 2 second delay
+      setTimeout(() => resolve(LEADERS.filter((leader) => leader.featured)[0]), 2000);
+    });
   }
 }
