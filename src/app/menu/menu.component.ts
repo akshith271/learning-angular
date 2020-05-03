@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Dish } from "../shared/dish";
 import { DishService } from "../services/dish.service";
 import { Leader } from "../shared/leader";
-import {LeaderService} from "../services/leader.service";
+import { LeaderService } from "../services/leader.service";
 
 @Component({
   selector: "app-menu",
@@ -13,12 +13,13 @@ export class MenuComponent implements OnInit {
   dishes: Dish[];
   selectedDish: Dish;
   featuredLeader: Leader;
-  constructor(private dishService: DishService,
-              private leaderService: LeaderService) {}
+  constructor(
+    private dishService: DishService,
+    private leaderService: LeaderService
+  ) {}
 
   ngOnInit() {
-    this.dishService.getDishes()
-      .subscribe((dishes)=> this.dishes = dishes);
+    this.dishService.getDishes().subscribe((dishes) => (this.dishes = dishes));
   }
   onSelect(dish: Dish) {
     this.selectedDish = dish;

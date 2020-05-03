@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Feedback, ContactType } from "../shared/feedback";
+import { ContactType, Feedback } from "../shared/feedback";
 
 @Component({
   selector: "app-contact",
@@ -13,31 +13,31 @@ export class ContactComponent implements OnInit {
   @ViewChild("fform") feedbackFormDirective;
   contactType = ContactType;
   formErrors = {
-    'firstname':'',
-    'lastname':'',
-    'telnum':'',
-    'email':''
+    firstname: "",
+    lastname: "",
+    telnum: "",
+    email: "",
   };
 
   validationMessages = {
-    'firstname' :{
-      'required' : 'First name is required. ',
-      'minlength' : 'First name should must be at least two characters long. ',
-      'maxlength' : 'First name cannot be more than 25 characters.'
+    firstname: {
+      required: "First name is required. ",
+      minlength: "First name must be at least two characters long. ",
+      maxlength: "First name cannot be more than 25 characters.",
     },
-    'lastname' :{
-      'required' : 'Last name is required. ',
-      'minlength' : 'Last name should must be at least two characters long. ',
-      'maxlength' : 'Last name cannot be more than 25 characters.'
+    lastname: {
+      required: "Last name is required. ",
+      minlength: "Last name must be at least two characters long. ",
+      maxlength: "Last name cannot be more than 25 characters.",
     },
-    'telnum':{
-      'required' : 'Tel. number is required. ',
-      'pattern' : 'Tel. number should contain only numbers.',
+    telnum: {
+      required: "Tel. number is required. ",
+      pattern: "Tel. number should contain only numbers.",
     },
-    'email' : {
-      'required' : 'Email is required. ',
-      'email' : 'Email not in valid format.'
-    }
+    email: {
+      required: "Email is required. ",
+      email: "Email not in valid format.",
+    },
   };
 
   constructor(private fb: FormBuilder) {
@@ -48,37 +48,54 @@ export class ContactComponent implements OnInit {
 
   createForm() {
     this.feedbackForm = this.fb.group({
-      firstname: ["",[ Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      lastname: ["", [ Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      telnum: ["", [Validators.required,Validators.pattern]],
-      email: ["", Validators.required,Validators.email],
+      firstname: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(25),
+        ],
+      ],
+      lastname: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(25),
+        ],
+      ],
+      telnum: ["", [Validators.required, Validators.pattern]],
+      email: ["", Validators.required, Validators.email],
       agree: false,
       contacttype: "None",
       message: "",
     });
-    this.feedbackForm.valueChanges.subscribe(data =>this.onValueChanged(data));
+    this.feedbackForm.valueChanges.subscribe((data) =>
+      this.onValueChanged(data)
+    );
     this.onValueChanged(); //reset the form validation messages
   }
 
-  onValueChanged(data?: any){
-    if(!this.feedbackForm){return; }
+  onValueChanged(data?: any) {
+    if (!this.feedbackForm) return;
+
     const form = this.feedbackForm;
-    for(const field in this.formErrors){
-      if(this.formErrors.hasOwnProperty(field)){
+    for (const field in this.formErrors) {
+      if (this.formErrors.hasOwnProperty(field)) {
         // clear previous field messages if any
-        this.formErrors[field] = '';
+        this.formErrors[field] = "";
         const control = form.get(field);
-        if(control && control.dirty && !control.valid){
+        if (control && control.dirty && !control.valid) {
           const messages = this.validationMessages[field];
-          for(const key in control.errors){
-            if(control.errors.hasOwnProperty(key) ){
-              this.formErrors[field] += messages[key] + '';
+          for (const key in control.errors) {
+            if (control.errors.hasOwnProperty(key)) {
+              this.formErrors[field] += messages[key] + "";
             }
           }
         }
       }
     }
-  };
+  }
 
   onSubmit() {
     this.feedback = this.feedbackForm.value;

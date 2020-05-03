@@ -35,6 +35,7 @@ import {MatInputModule} from "@angular/material/input";
 import {FormsModule} from "@angular/forms";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatSliderModule} from "@angular/material/slider";
 
 @NgModule({
   declarations: [
@@ -52,26 +53,27 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
   providers: [DishService, PromotionService, LeaderService],
   bootstrap: [AppComponent],
 
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    FlexLayoutModule,
-    MatListModule,
-    MatGridListModule,
-    MatCardModule,
-    MatDialogModule,
-    MatButtonModule,
-    AppRoutingModule,
-    MatSelectModule,
-    MatSlideToggleModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatCheckboxModule,
-    ReactiveFormsModule,
-    MatProgressSpinnerModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        FlexLayoutModule,
+        MatListModule,
+        MatGridListModule,
+        MatCardModule,
+        MatDialogModule,
+        MatButtonModule,
+        AppRoutingModule,
+        MatSelectModule,
+        MatSlideToggleModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        MatCheckboxModule,
+        ReactiveFormsModule,
+        MatProgressSpinnerModule,
+        MatSliderModule
+    ],
   entryComponents:[
     LoginComponent
   ],
