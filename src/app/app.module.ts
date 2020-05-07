@@ -13,7 +13,7 @@ import { AppRoutingModule } from "./app-routing/app-routing.module";
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import {HttpClientModule} from "@angular/common/http";
 
 import "hammerjs";
 
@@ -29,6 +29,8 @@ import { ContactComponent } from "./contact/contact.component";
 import { DishService } from "./services/dish.service";
 import { PromotionService } from "./services/promotion.service";
 import { LeaderService } from "./services/leader.service";
+import {ProcessHTTPMsgService} from "./services/process-httpmsg.service";
+
 import { LoginComponent } from './login/login.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
@@ -36,6 +38,8 @@ import {FormsModule} from "@angular/forms";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatSliderModule} from "@angular/material/slider";
+import { baseURL} from "./shared/baseurl";
+import {HttpModule} from "@angular/http";
 
 @NgModule({
   declarations: [
@@ -50,7 +54,7 @@ import {MatSliderModule} from "@angular/material/slider";
     LoginComponent,
   ],
 
-  providers: [DishService, PromotionService, LeaderService],
+  providers: [DishService, PromotionService, LeaderService, ProcessHTTPMsgService, {provide: 'baseURL', useValue: baseURL }],
   bootstrap: [AppComponent],
 
     imports: [
@@ -72,7 +76,10 @@ import {MatSliderModule} from "@angular/material/slider";
         MatCheckboxModule,
         ReactiveFormsModule,
         MatProgressSpinnerModule,
-        MatSliderModule
+        MatSliderModule,
+        HttpClientModule,
+        HttpModule,
+
     ],
   entryComponents:[
     LoginComponent
