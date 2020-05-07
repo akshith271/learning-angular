@@ -40,6 +40,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatSliderModule} from "@angular/material/slider";
 import { baseURL} from "./shared/baseurl";
 import {HttpModule} from "@angular/http";
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import {HttpModule} from "@angular/http";
     AboutComponent,
     ContactComponent,
     LoginComponent,
+    HighlightDirective,
   ],
 
   providers: [DishService, PromotionService, LeaderService, ProcessHTTPMsgService, {provide: 'baseURL', useValue: baseURL }],
