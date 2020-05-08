@@ -42,6 +42,7 @@ import { baseURL} from "./shared/baseurl";
 import {HttpModule} from "@angular/http";
 import { HighlightDirective } from './directives/highlight.directive';
 
+
 @NgModule({
   declarations: [
     AppComponent,
