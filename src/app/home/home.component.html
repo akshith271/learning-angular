@@ -21,7 +21,7 @@
   <div fxFlex [hidden]="dish || dishErrMess">
     <mat-spinner>
       <h4>
-        Loading . . .PLease Wait!
+        Loading . . .Please Wait!
       </h4>
     </mat-spinner>
   </div>
@@ -43,19 +43,27 @@
     </mat-card-header>
     <img
       mat-card-image
-      src="{{ promotion.image }}"
+      src="{{baseURL +   promotion.image }}"
       alt="{{ promotion.name }}"
     />
     <mat-card-content>
       <p>{{ promotion.description }}</p>
     </mat-card-content>
   </mat-card>
-  <div fxFlex [hidden]="promotion">
+  <div fxFlex [hidden]="promotion || promoErrMsg">
     <mat-spinner>
       <h4>
-        Loading . . .PLease Wait!
+        Loading . . .Please Wait!
       </h4>
     </mat-spinner>
+    <div fxFlex *ngIf="promoErrMsg">
+      <h2>
+        Error
+      </h2>
+      <h4>
+        {{promoErrMsg}}
+      </h4>
+    </div>
   </div>
 
   <mat-card *ngIf="leader" fxFlex [@expand]>
@@ -65,17 +73,25 @@
         <h3>{{ leader.name | uppercase }} {{ leader.abbr }}</h3>
       </mat-card-title>
     </mat-card-header>
-    <img mat-card-image src="{{ leader.image }}" alt="{{ leader.name }}" />
+    <img mat-card-image src="{{baseURL + leader.image }}" alt="{{ leader.name }}" />
     <mat-card-content>
       <span>{{ leader.designation }}</span>
       <p>{{ leader.description }}</p>
     </mat-card-content>
   </mat-card>
-  <div fxFlex [hidden]="leader">
+  <div fxFlex [hidden]="leader || leaderErrMsg">
     <mat-spinner>
       <h4>
-        Loading . . .PLease Wait!
+        Loading . . .Please Wait!
       </h4>
     </mat-spinner>
+  </div>
+  <div fxFlex *ngIf="leaderErrMsg">
+    <h2>
+      Error
+    </h2>
+    <h4>
+      {{leaderErrMsg}}
+    </h4>
   </div>
 </div>

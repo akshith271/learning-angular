@@ -6,7 +6,8 @@ import { PromotionService } from "../services/promotion.service";
 
 import {LeaderService} from "../services/leader.service";
 import {Leader} from "../shared/leader";
-import {flyInOut} from "../animations/app.animation";
+import {flyInOut,expand} from "../animations/app.animation";
+import {error} from "util";
 
 @Component({
   selector: "app-home",
@@ -17,7 +18,8 @@ import {flyInOut} from "../animations/app.animation";
     'style': 'display : block;'
   },
   animations:[
-    flyInOut()
+    flyInOut(),
+    expand()
   ]
 })
 export class HomeComponent implements OnInit {
@@ -25,6 +27,8 @@ export class HomeComponent implements OnInit {
   promotion: Promotion;
   dishErrMess : string;
   leader: Leader;
+  promoErrMsg:string;
+  leaderErrMsg:string;
 
   constructor(
     private dishService: DishService,
@@ -36,10 +40,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.dishService.getFeaturedDish()
-      .subscribe((dish)=>this.dish = dish, errmess => this.dishErrMess = <any>errmess );
+      .subscribe((dish)=>this.dish = dish, error => this.dishErrMess = <any>error );
     this.promotionService.getFeaturedPromotion()
-      .subscribe((promotion)=> this.promotion = promotion);
+      .subscribe((promotion)=> this.promotion = promotion, error =>this.promoErrMsg = <any>error);
     this.leaderService.getFeaturedLeader()
-      .subscribe((leader)=> this.leader = leader);
+      .subscribe((leader)=> this.leader = leader, error => this.leaderErrMsg = <any>error);
   }
 }
